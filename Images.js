@@ -87,8 +87,8 @@ export class Images {
     saveComment() {
         const name = document.getElementById('name')
         const comment = document.getElementById('comment')
-        const form = document.querySelector('.comments-form')
-        const button = document.querySelector('.comment-button')
+        const form = document.querySelector('.comments-block__form')
+        const button = document.querySelector('.comments-block__button')
 
         let data = {
             name: '',

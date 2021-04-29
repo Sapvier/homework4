@@ -106,7 +106,7 @@ h1 {
     justify-content: space-between;
 }
 
-.comment-button {
+.comments-block__button {
     color: white;
     background-color: dodgerblue;
     height: 30px;
@@ -116,19 +116,21 @@ h1 {
     cursor: pointer;
 }
 .error {
-    animation: error 1s ease-out;
+    animation: error 1s ease-in-out;
 }
 .success {
-    animation: success 1s ease-out;
+    animation: success 1s ease-in-out;
 }
 @keyframes  error{
-    100% {background-color: crimson}
+    50% {background-color: crimson}
+    100% {background-color: dodgerblue}
 }
 @keyframes success {
-    100% {background-color: yellowgreen}
+    50% {background-color: yellowgreen}
+    100% {background-color: dodgerblue}
 }
 
-.comments-form {
+.comments-block__form {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -142,7 +144,7 @@ h1 {
     order: 2
 }
 
-.comments-form input {
+.comments-block__form input {
     height: 30px;
     width: 332px;
     border-radius: 5px;
@@ -150,7 +152,7 @@ h1 {
     margin-bottom: 20px;
     padding: 5px;
 }
-.comments-form input:focus {
+.comments-block__form input:focus {
     outline: none;
     border: 1px solid dodgerblue;
 }
@@ -170,9 +172,6 @@ h1 {
 @media (max-width: 792px) {
     .image-expanded-overlay {
         height: 100%;
-    }
-    .image-expanded {
-        top: 20%
     }
 }
 @media (max-width: 650px) {
@@ -213,24 +212,21 @@ h1 {
         width: 100vw;
     }
     .comments-wrapper {
-        width: 80%;
-        padding-left: 25px;
+        min-width: 90%;
     }
     .comments-wrapper div {
         width: 80%;
     }
     .comments-block {
         width: 90%;
-        padding-left: 7px;
-        padding-right: 7px;
     }
-    .comments-form {
+    .comments-block__form {
         width: 100%;
     }
-    .comments-form input{
+    .comments-block__form input{
         width: 100%;
     }
-    .comment-button {
+    .comments-block__button {
         width: 100%;
     }
 }
