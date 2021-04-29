@@ -13,6 +13,10 @@ p {
     margin: 0;
     padding-bottom: 5px;
 }
+h1 {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 36px;
+}
 
 .copymark {
     position: absolute;
@@ -38,7 +42,7 @@ p {
 
 }
 .images-container {
-    width: 85%;
+    max-width: 768px;
     padding: 10px;
     display: flex;
     flex-direction: row;
@@ -82,6 +86,7 @@ p {
     justify-content: space-between;
     align-items: center;
 }
+
 .image-expanded span {
     font-size: 24px;
     height: 20px;
@@ -92,6 +97,7 @@ p {
     top: 10px;
     cursor: pointer;
 }
+
 .image-expanded-img {
     height: 100%;
     display: flex;
@@ -109,10 +115,19 @@ p {
     border: none;
     cursor: pointer;
 }
-.comment-button:focus {
-    outline: none;
-    background-color: blue;
+.error {
+    animation: error 1s ease-out;
 }
+.success {
+    animation: success 1s ease-out;
+}
+@keyframes  error{
+    100% {background-color: crimson}
+}
+@keyframes success {
+    100% {background-color: yellowgreen}
+}
+
 .comments-form {
     display: flex;
     flex-direction: column;
@@ -148,6 +163,7 @@ p {
 @media (max-width: 810px) {
     .images-container {
         justify-content: center;
+        padding: 0;
     }
 }
 
@@ -170,10 +186,9 @@ p {
         justify-content: flex-start;
         row-gap: 30px;
         padding: 0;
-
     }
     .container{
-        padding: 0;
+        padding: 15px;
     }
     .image-expanded-img {
         justify-content: flex-start;
@@ -191,9 +206,15 @@ p {
     }
 }
 @media (max-width: 375px) {
+    .container {
+        padding: 0;
+    }
+    .image-expanded img {
+        width: 100vw;
+    }
     .comments-wrapper {
         width: 80%;
-        padding-left: 20px;
+        padding-left: 25px;
     }
     .comments-wrapper div {
         width: 80%;

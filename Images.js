@@ -20,6 +20,8 @@ export class Images {
                 const img = document.createElement("img");
                 img.src = `${item.url}`
                 img.id = `${item.id}`
+                img.width = 229
+                img.height = 142
                 document.querySelector('.images-container').appendChild(img);
             }
         }
@@ -42,13 +44,13 @@ export class Images {
         fetch(this.api_url + '/' + id)
             .then(response => response.json())
             .then(image => {
-                this.addImage(image)
+                this.addLargeImage(image)
                 this.addComments(image)
+                window.scrollTo({top: 0, behavior: 'smooth'});
             })
     }
 
-    addImage(image) {
-        console.log(image)
+    addLargeImage(image) {
         const modalImg = document.querySelector('.image-expanded')
 
         if (modalImg.firstElementChild.tagName === 'IMG') {
@@ -86,6 +88,7 @@ export class Images {
         const name = document.getElementById('name')
         const comment = document.getElementById('comment')
         const form = document.querySelector('.comments-form')
+        const button = document.querySelector('.comment-button')
 
         let data = {
             name: '',
@@ -96,11 +99,18 @@ export class Images {
         form.addEventListener('submit', (e) => {
             e.preventDefault()
             data = {...data,
-                id: document.getElementsByClassName('image-expanded-img')[0].id,
+                id: document.querySelector('.image-expanded').id,
                 date: Date.now()
             }
-            postComment(data, this.api_url)
-
+            if (data.name === '' || data.comment === '') {
+               button.classList.add('error')
+               setTimeout(() => {button.classList.remove('error')}, 3000);
+            }
+            else  {
+                button.classList.add('success')
+                postComment(data, this.api_url)
+                setTimeout(() => {button.classList.remove('success')}, 3000);
+            }
         })
 
         name.addEventListener('input', (e) => {
@@ -132,7 +142,7 @@ export class Images {
         const months = ["Jan", "Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
         const commentsWrapper = document.querySelector('.comments-wrapper')
 
-        if(image.comments.length < 1) {
+        if (image.comments.length < 1) {
             commentsWrapper.innerHTML = ''
         }
 
